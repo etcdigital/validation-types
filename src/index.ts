@@ -5,28 +5,55 @@ import { isCPF } from './lib/cpf';
 import { isCNPJ } from './lib/cnpj';
 import { isJson } from './lib/json';
 import { isEmail } from './lib/email';
-import { isSlug } from './lib/slug';
 import { isDateString } from './lib/dateString';
-import { isAddress } from './lib/isAddress';
 import { isTime } from './lib/time';
+export { isAddress } from './lib/isAddress';
+export { isSlug } from './lib/slug';
 
-export const is = (value: any) => {
-  return {
-    string: (): boolean => typeof value === 'string',
-    number: (): boolean => isNumber(value),
-    boolean: (): boolean => typeof value === 'boolean',
-    object: (): boolean => typeof value === 'object',
-    phone: (): boolean => isPhone(value),
-    safePassword: (): boolean => isSafePassword(value),
-    mediumPassword: (): boolean => isMediumPassword(value),
-    strongPassword: (): boolean => isStrongPassword(value),
-    cpf: (): boolean => isCPF(value),
-    cnpj: (): boolean => isCNPJ(value),
-    json: (): boolean => isJson(value),
-    email: (): boolean => isEmail(value),
-    slug: (minChar = 3, maxChar = 32): boolean => isSlug(value, minChar, maxChar),
-    dateString: (): boolean => isDateString(value),
-    address: (): boolean => isAddress(value).valid,
-    time: (): boolean => isTime(value),
-  };
+const isString = (value: any): boolean => typeof value === 'string';
+const isBoolean = (value: any): boolean => typeof value === 'boolean';
+const isObject = (value: any): boolean => typeof value === 'object';
+
+export type SyncisType =
+  | 'string'
+  | 'number'
+  | 'boolean'
+  | 'object'
+  | 'phone'
+  | 'safePassword'
+  | 'mediumPassword'
+  | 'strongPassword'
+  | 'cpf'
+  | 'cnpj'
+  | 'json'
+  | 'email'
+  | 'dateString'
+  | 'time';
+
+const validations: { [key in SyncisType]: (value: any) => boolean } = {
+  string: isString,
+  number: (value: any): boolean => isNumber(value),
+  boolean: isBoolean,
+  object: isObject,
+  phone: (value: any): boolean => isPhone(value),
+  safePassword: (value: any): boolean => isSafePassword(value),
+  mediumPassword: (value: any): boolean => isMediumPassword(value),
+  strongPassword: (value: any): boolean => isStrongPassword(value),
+  cpf: (value: any): boolean => isCPF(value),
+  cnpj: (value: any): boolean => isCNPJ(value),
+  json: (value: any): boolean => isJson(value),
+  email: (value: any): boolean => isEmail(value),
+  dateString: (value: any): boolean => isDateString(value),
+  time: (value: any): boolean => isTime(value),
+};
+
+export const is = (value: any, type: SyncisType) => {
+  if ((!value && value !== false) || !type) {
+    return false;
+  }
+  const validate = validations[type];
+  if (!validate) {
+    return false;
+  }
+  return validate(value);
 };
