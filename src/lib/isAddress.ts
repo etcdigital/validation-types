@@ -1,10 +1,19 @@
-import { stringSize } from '../../strings';
 import { is } from '../';
 
 interface IIsAddress {
   valid: boolean;
   reason?: string;
 }
+
+export const stringSize = (value: string, minSize = 3, maxSize = 63): boolean => {
+  if (!value) {
+    return false;
+  }
+  if (value.length < minSize || value.length > maxSize) {
+    return false;
+  }
+  return true;
+};
 
 const isInvalid = (reason: string): IIsAddress => ({ reason, valid: false });
 const isObjectInvalid = (obj: any) => !obj || !is(obj).object();
