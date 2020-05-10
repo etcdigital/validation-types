@@ -1,8 +1,10 @@
 import { is } from '../';
 
+type IIsAddressInvalid = 'all' | 'place' | 'complement' | 'district' | 'city' | 'state' | 'country';
+
 interface IIsAddress {
   valid: boolean;
-  reason?: string;
+  invalid?: IIsAddressInvalid;
 }
 
 export const stringSize = (value: string, minSize = 3, maxSize = 63): boolean => {
@@ -15,7 +17,7 @@ export const stringSize = (value: string, minSize = 3, maxSize = 63): boolean =>
   return true;
 };
 
-const isInvalid = (reason: string): IIsAddress => ({ reason, valid: false });
+const isInvalid = (invalid?: IIsAddressInvalid): IIsAddress => ({ invalid, valid: false });
 const isObjectInvalid = (obj: any) => !obj || !is(obj).object();
 const isPlaceInvalid = (place: any) => place === '' || !is(place).string();
 const isComponentInvalid = (complement: any) => complement && !stringSize(complement, 1, 30);
@@ -25,25 +27,25 @@ const isStateInvalid = (state: any) => state === '' || !is(state).string() || !s
 
 export const isAddress = (data: any): IIsAddress => {
   if (isObjectInvalid(data)) {
-    return isInvalid('Endereço inválido.');
+    return isInvalid('all');
   }
   if (isPlaceInvalid(data.place)) {
-    return isInvalid('Rua inválida.');
+    return isInvalid('place');
   }
   if (isComponentInvalid(data.complement)) {
-    return isInvalid('Complemento inválido.');
+    return isInvalid('complement');
   }
   if (isDistrictInvalid(data.district)) {
-    return isInvalid('Bairro inválido.');
+    return isInvalid('district');
   }
   if (isCityInvalid(data.city)) {
-    return isInvalid('Cidade inválida.');
+    return isInvalid('city');
   }
   if (isStateInvalid(data.state)) {
-    return isInvalid('Estado inválido.');
+    return isInvalid('state');
   }
   if (!is(data.country).number()) {
-    return isInvalid('País inválido.');
+    return isInvalid('country');
   }
   return { valid: true };
 };
