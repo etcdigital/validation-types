@@ -1,6 +1,6 @@
 {
-  "name": "is",
-  "description": "A helper to compare types on javascript - with adicional validation",
+  "name": "syncis",
+  "description": "A synchronous helper to compare types on javascript - with adicional validation",
   "version": "0.1.0",
   "author": "Tiago Souza",
   "license": "MIT",
@@ -13,7 +13,7 @@
     "node": ">12.16.0"
   },
   "repository": {
-    "url": "https://github.com/etcdigital/is",
+    "url": "https://github.com/etcdigital/syncis",
     "type": "git"
   },
   "files": [
