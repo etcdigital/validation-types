@@ -1,7 +1,7 @@
 {
   "name": "syncis",
   "description": "A synchronous helper to compare types on javascript - with adicional validation",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "author": "Tiago Souza",
   "license": "MIT",
   "scripts": {
