@@ -8,7 +8,6 @@ import { isEmail } from './lib/email';
 import { isDateString } from './lib/dateString';
 import { isTime } from './lib/time';
 export { isAddress } from './lib/isAddress';
-export { isSlug } from './lib/slug';
 
 const isString = (value: any): boolean => typeof value === 'string';
 const isBoolean = (value: any): boolean => typeof value === 'boolean';

@@ -4,7 +4,7 @@ A helper to compare types on javascript - with adicional validation
 
 ## How to use
 
-`const { is, isSlug } from "syncis";`
+`const { is } from "syncis";`
 
 For strings
 
@@ -60,7 +60,3 @@ For string date
 For string time
 
 `is("11:30", "time");` return _true_
-
-For slugs
-
-`isSlug("slug-with-text");` return _true_
