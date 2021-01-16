@@ -23,6 +23,6 @@ jobs:
           git config --global user.email "tiago@etc.digital"
           git config --global user.name "Tiago Souza"
       - run: yarn install --silent --frozen-lockfile
-      - run: yarn run lerna publish --conventional-commits --create-release=github --yes
+      - run: yarn lerna publish --conventional-commits --create-release=github --yes
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}

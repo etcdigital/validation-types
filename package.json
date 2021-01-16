@@ -10,6 +10,7 @@
 		"develop": "lerna run --parallel --scope example-gatsby --include-dependencies develop",
 		"format": "prettier --ignore-path .gitignore --write .",
 		"postinstall": "lerna run --scope @validation-types/* --stream build && lerna bootstrap",
+		"lerna": "./node_modules/.bin/lerna",
 		"lint": "eslint --quiet ./packages/**/src/**",
 		"prepublish": "lerna run --stream build",
 		"release": "dotenv -- lerna version --create-release github",
