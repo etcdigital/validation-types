@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.1](https://github.com/etcdigital/validation-types/compare/@validation-types/json@0.3.0...@validation-types/json@0.4.1) (2021-01-16)
+
+**Note:** Version bump only for package @validation-types/json
+
+
+
+
+
 # 0.4.0 (2021-01-16)
 
 
