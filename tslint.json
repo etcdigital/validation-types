@@ -1,8 +1,0 @@
-{
-  "plugins": ["prettier"],
-  "extends": ["tslint-plugin-prettier", "tslint:recommended", "tslint-config-prettier", "@netflix/tslint-config"],
-  "rules": {
-    "max-line-length": [true, 150],
-    "prettier": true
-  }
-}

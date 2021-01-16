@@ -1,27 +1,25 @@
-name: Publish to NPM
+name: Publish Packages
 
 on:
-  release:
-    types: [created]
+  push:
+    branches: ["master"]
 
 jobs:
-  deploy:
+  publish:
     runs-on: ubuntu-latest
 
     steps:
+      - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
         with:
-          node-version: 12
-
-      - uses: actions/checkout@v1
-
+          node-version: 14.x
       - run: |
           npm set progress=false
           npm set package-lock=false
-          npm set registry https://registry.npmjs.org/ && echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_AUTH_TOKEN }}" > .npmrc
-
+          npm set registry https://registry.npmjs.org/ && echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN_PUBLISH }}" > .npmrc
+          git config --global user.email "tiago@etc.digital"
+          git config --global user.name "Tiago Souza"
       - run: yarn install --silent --frozen-lockfile
-
-      - run: yarn build
-
-      - run: npm publish --access public
+      - run: yarn run lerna publish --conventional-commits --create-release=github --yes
+        env:
+          GH_TOKEN: ${{secrets.GH_TOKEN}}

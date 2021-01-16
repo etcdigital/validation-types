@@ -1,0 +1,26 @@
+{
+	"extends": ["config:base"],
+	"semanticCommits": true,
+	"labels": ["dependencies"],
+	"stabilityDays": 3,
+	"prCreation": "not-pending",
+	"assignees": ["etc-tiago"],
+	"packageRules": [
+		{
+			"packagePatterns": ["cypress", "cypress-fail-fast", "cypress-file-upload"],
+			"groupName": "cypress"
+		},
+		{
+			"packagePatterns": [
+				"@typescript-eslint/parser",
+				"eslint-plugin-react",
+				"eslint-plugin-react-hooks",
+				"eslint-plugin-simple-import-sort",
+				"prettier"
+			],
+			"groupName": "lint"
+		},
+		{ "packagePatterns": ["^babel"], "groupName": "babel" },
+		{ "packagePatterns": ["^@types"], "groupName": "types" }
+	]
+}

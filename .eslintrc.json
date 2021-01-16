@@ -1,0 +1,51 @@
+{
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended" // TypeScript rules
+  ],
+  "root": true,
+  "env": { "browser": false },
+  "plugins": ["prettier", "simple-import-sort"],
+  "parserOptions": {
+    "ecmaVersion": 7,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "experimentalObjectRestSpread": true
+    }
+  },
+  "rules": {
+    "prettier/prettier": "error",
+
+    // Auto-sort imports
+    "sort-imports": "off",
+    "import/order": "off",
+    "simple-import-sort/imports": "error",
+    "simple-import-sort/exports": "error",
+
+    // Custom preferences
+    "import/prefer-default-export": "off",
+    "no-bitwise": "off",
+    "no-plusplus": "off",
+
+    /* Typescript */
+    "arrow-body-style": ["off"],
+    "@typescript-eslint/no-explicit-any": "off",
+
+    // This rule is not compatible with Next.js's <Link /> components
+    "jsx-a11y/anchor-is-valid": "off",
+
+    // Why would you want unused vars?
+    "@typescript-eslint/no-unused-vars": ["error"],
+    "@typescript-eslint/no-unused-vars-experimental": "error",
+    "no-unused-vars": "off",
+
+    // I suggest this setting for requiring return types on functions only where useful
+    "@typescript-eslint/explicit-function-return-type": [
+      "warn",
+      {
+        "allowExpressions": true,
+        "allowConciseArrowFunctionExpressionsStartingWithVoid": true
+      }
+    ]
+  }
+}
