@@ -12,5 +12,6 @@ describe("JSON Validator", () => {
 		expect(isJson('{"a": true}')).toBe(true);
 		expect(isJson("{}")).toBe(true);
 		expect(isJson("[]")).toBe(true);
+		expect(isJson({})).toBe(true);
 	});
 });

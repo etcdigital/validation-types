@@ -8,10 +8,11 @@ const isTime = (time: string): boolean => {
 		return false;
 	}
 	/* Check value by numbers */
-	const split = time.split(":");
-	if (parseInt(split[0], 10) > 24 || parseInt(split[0], 10) > 59) {
-		return false;
-	}
+	// const split = time.split(":");
+	// console.log(split);
+	// if (parseInt(split[0], 10) > 24 || parseInt(split[1], 10) > 59) {
+	// 	return false;
+	// }
 	return true;
 };
 
